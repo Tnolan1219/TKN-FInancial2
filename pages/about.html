@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About — TKN Financial</title>
+  <meta name="description" content="About TKN Financial — personal finance for service members, simplified and visual." />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    :root{
+      --bg:#070a17; --ink:#eaf0ff; --muted:#9fb0d9; --brand:#7aa2ff; --accent:#3ddc97; --panel:rgba(255,255,255,.06);
+      --stroke:rgba(255,255,255,.12); --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;color:var(--ink);font-family:system-ui,-apple-system,Inter,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
+      background: radial-gradient(1200px 1200px at 10% -10%, #12204a 0%, transparent 60%),
+                  radial-gradient(900px 900px at 110% 10%, #172c6b 0%, transparent 55%),
+                  linear-gradient(180deg,#0b1226 0%, #070a17 60%);
+      position:relative; overflow-x:hidden;
+    }
+    .orb{position:absolute; filter:blur(40px); opacity:.35; mix-blend-mode:screen; pointer-events:none}
+    .orb.one{width:420px;height:420px;background:conic-gradient(from 10deg,#5ea8ff,#b9f2ff,#6df7c6,#5ea8ff); left:-120px; top:-120px; animation:float 16s ease-in-out infinite}
+    .orb.two{width:360px;height:360px;background:conic-gradient(from 220deg,#2acbff,#7aa2ff,#a1b8ff); right:-160px; top:20vh; animation:float 18s ease-in-out infinite reverse}
+    @keyframes float{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-18px) rotate(8deg)}}
+
+    header{position:sticky;top:0;z-index:30;backdrop-filter:blur(10px); background:rgba(7,10,23,.55); border-bottom:1px solid var(--stroke)}
+    .container{max-width:1100px;margin:0 auto;padding:18px}
+    .bar{display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.2px}
+    .home{display:inline-flex;align-items:center;gap:.6rem;padding:.7rem 1rem;border-radius:999px;border:1px solid #2b3a7a;background:#111b3c;color:var(--ink);font-weight:800;text-decoration:none}
+
+    .hero{padding:72px 0 28px}
+    .title{font-size:clamp(2.2rem,4vw,3.4rem);line-height:1.05;margin:0 0 10px 0;font-weight:900}
+    .subtitle{color:var(--muted);font-size:1.1rem;max-width:56ch;margin:0}
+
+    .grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:26px}
+    @media(min-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}
+    .tile{position:relative; background:var(--panel); border:1px solid var(--stroke); border-radius:var(--radius); padding:18px; overflow:hidden; transition:transform .35s ease, box-shadow .35s ease; box-shadow:0 10px 28px rgba(0,0,0,.35)}
+    .tile:hover{transform:translateY(-6px) scale(1.01); box-shadow:0 18px 46px rgba(0,0,0,.45)}
+    .tile h3{margin:0 0 8px 0; font-size:1.1rem}
+    .tile p{margin:0; color:var(--ink)}
+    .tile small{color:var(--muted);display:block;margin-top:6px}
+
+    .deck{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:22px}
+    @media(min-width:740px){.deck{grid-template-columns:repeat(6,1fr)}}
+    .pill{background:var(--panel);border:1px solid var(--stroke);border-radius:14px;padding:14px;text-align:center;font-weight:700}
+    .pill span{display:block;font-size:28px;margin-bottom:6px}
+
+    .glass{position:relative; margin-top:28px; border-radius:22px; padding:22px; backdrop-filter:blur(8px); background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.04)); border:1px solid rgba(255,255,255,.15); box-shadow:0 16px 44px rgba(0,0,0,.45)}
+    .glass h4{margin:0 0 8px 0}
+    .bar-mini{display:flex;gap:10px;flex-wrap:wrap}
+    .chip{padding:8px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--stroke);font-size:.9rem}
+
+    footer{padding:36px 0 22px;border-top:1px solid var(--stroke);margin-top:34px;color:var(--muted);text-align:center}
+
+    .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:10px}
+    .kpi{background:var(--panel);border:1px solid var(--stroke);border-radius:14px;padding:14px;text-align:center}
+    .kpi b{font-size:1.6rem;display:block}
+  </style>
+</head>
+<body>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+
+  <header>
+    <div class="container bar">
+      <div class="brand"><span aria-hidden>💠</span> <span>TKN Financial</span></div>
+      <a class="home" href="/HOME PAGE CODE V3.html">Home</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1 class="title">Personal Finance Built for Service Members.</h1>
+      <p class="subtitle">At TKN Financial, we simplify money decisions for military and veteran communities — delivering clarity, confidence, and control.</p>
+      <div class="kpis">
+        <div class="kpi"><span class="muted">Tools</span><b id="k1">0</b></div>
+        <div class="kpi"><span class="muted">Guides</span><b id="k2">0</b></div>
+        <div class="kpi"><span class="muted">Users</span><b id="k3">0</b></div>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Highlights">
+      <article class="tile">
+        <h3>Our Mission</h3>
+        <p>Equip service members with modern, easy‑to‑use financial tools.</p>
+        <small>We believe good money habits strengthen readiness and long‑term freedom.</small>
+      </article>
+      <article class="tile">
+        <h3>Who We Serve</h3>
+        <p>Active Duty • Guard/Reserve • Veterans • ROTC</p>
+        <small>From first paycheck to PCS moves to retirement planning.</small>
+      </article>
+      <article class="tile">
+        <h3>Our Approach</h3>
+        <p>Visual, lightweight, and tailored to military life.</p>
+        <small>Offline‑friendly, no log‑ins, no distractions — just clarity.</small>
+      </article>
+    </section>
+
+    <section class="deck" aria-label="Focus areas">
+      <div class="pill"><span>📊</span>Budget</div>
+      <div class="pill"><span>🏦</span>TSP</div>
+      <div class="pill"><span>🏠</span>VA Loan</div>
+      <div class="pill"><span>📈</span>Investing</div>
+      <div class="pill"><span>🧾</span>Benefits</div>
+      <div class="pill"><span>🛡️</span>Readiness</div>
+    </section>
+
+    <section class="glass" aria-label="Design notes">
+      <h4>Design principles</h4>
+      <div class="bar-mini">
+        <div class="chip">Easy to Use</div>
+        <div class="chip">Military‑first</div>
+        <div class="chip">Honorable Service</div>
+        <div class="chip">No Complicated Janguage</div>
+        <div class="chip">Made to Serve</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© <span id="year"></span> TKN Financial — Built for service members.</div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    function countUp(el, target, duration=1000){
+      const start = 0; const t0 = performance.now();
+      function frame(t){
+        const p = Math.min(1,(t-t0)/duration);
+        const val = Math.floor(start + (target-start)*p);
+        el.textContent = val.toLocaleString();
+        if(p<1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+    countUp(document.getElementById('k1'), 6, 1100);
+    countUp(document.getElementById('k2'), 12, 1200);
+    countUp(document.getElementById('k3'), 2400, 1400);
+  </script>
+</body>
+</html>

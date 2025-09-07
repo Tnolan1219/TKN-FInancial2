@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Military Benefits</title>
+    <a class="btn" href="/HOME PAGE CODE V3.html">Home</a>
+
+
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: rgba(17,24,39,0.92);
+      --card: rgba(20,30,60,0.82);
+      --text: #e8ecff;
+      --muted: #94a3b8;
+      --accent: #60a5fa;
+      --input: #1e2749;
+      --good: #3ddc97;
+      --warn: #ffd166;
+      --bad: #ef476f;
+      --radius: 12px;
+      --shadow: 0 8px 32px rgba(30,40,70,.18);
+      --brand-gradient: linear-gradient(90deg,#60a5fa 0%,#818cf8 100%);
+      --glass-blur: blur(14px);
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at -10% -10%, rgba(96,165,250,.14), transparent 55%),
+        radial-gradient(900px 420px at 110% -10%, rgba(99,102,241,.13), transparent 55%),
+        linear-gradient(180deg, var(--bg), #0b1020 40%, #0a0f1a);
+      min-height: 100vh;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 18px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid rgba(96,165,250,.06);
+      background: linear-gradient(180deg, rgba(11,16,32,.9), rgba(11,16,32,.65) 60%, transparent);
+      backdrop-filter: blur(8px);
+    }
+    h1 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 4px;
+      letter-spacing: .1px;
+      text-shadow: 0 1px 6px rgba(96,165,250,.08);
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 18px 8px 12px 8px;
+      background: var(--panel);
+      border-radius: var(--radius);
+      box-shadow: 0 6px 24px rgba(30,40,70,.18), var(--shadow);
+      margin-top: 18px;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 22px;
+      max-width: 1200px;
+      margin: 18px auto;
+      padding: 0 12px 48px;
+    }
+    @media (max-width: 1000px){ .layout{ grid-template-columns: 1fr } }
+    .toc {
+      position: sticky;
+      top: 82px;
+      align-self: start;
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      border: 1px solid rgba(255,255,255,.06);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      padding: 14px;
+      color: var(--muted);
+    }
+    .toc h3{margin:4px 0 8px; font-size:14px; color:#cfe6ff; letter-spacing:.4px}
+    .toc a{display:block; padding:8px 10px; border-radius:10px; color:var(--muted)}
+    .toc a:hover{background:var(--input); color:var(--text)}
+    .toc .section-link{font-size:14px}
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin: 8px 0 2px;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 14px;
+      background: var(--input);
+      border: 1px solid rgba(96,165,250,.08);
+      color: #cfe6ff;
+      cursor: pointer;
+      user-select: none;
+    }
+    .chip input{accent-color:var(--accent)}
+    .searchbar{display:flex; gap:10px; margin-top:10px}
+    .searchbar input{
+      width:100%; background:var(--input); border:1px solid rgba(96,165,250,.08);
+      color:var(--text); border-radius:12px; padding:12px 14px; outline:none;
+    }
+    section {
+      background: linear-gradient(120deg, rgba(96,165,250,.07) 0%, var(--input) 100%);
+      border: 1px solid rgba(96,165,250,.05);
+      border-radius: var(--radius);
+      padding: 18px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: var(--glass-blur);
+    }
+    section h2{margin:0 0 6px; font-size:20px; color:var(--accent); font-weight:700; letter-spacing:.05px; text-shadow:0 1px 4px rgba(96,165,250,.06);}
+    .section-sub{color:var(--muted); margin:0 0 14px}
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 14px;
+    }
+    @media (max-width: 900px){ .grid{grid-template-columns: 1fr} }
+    .benefit-item {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 4px 16px rgba(30,40,70,.12), var(--shadow);
+      border: 1px solid rgba(96,165,250,.08);
+      transition: transform .18s, box-shadow .18s, border .18s;
+      backdrop-filter: var(--glass-blur);
+    }
+    .benefit-item:hover {
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 16px 48px rgba(60,100,200,.18), var(--shadow);
+      border-color: var(--accent);
+      background: linear-gradient(120deg, rgba(96,165,250,.08) 0%, var(--card) 100%);
+    }
+    .benefit-head{display:flex; align-items:center; justify-content:space-between; gap:10px}
+    .badge{font-size:12px; padding:4px 8px; border-radius:999px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.06); color:#cfe6ff}
+    .tag{font-size:11px; padding:3px 7px; border-radius:999px; border:1px solid rgba(255,255,255,.12); color:#cfe6ff; margin-right:6px}
+    .meta{color:var(--muted); font-size:13px}
+    details{margin-top:8px}
+    details>summary{
+      cursor:pointer; list-style:none; font-weight:600; padding:10px; border-radius:10px; background:rgba(96,165,250,.03);
+      border:1px solid rgba(96,165,250,.06)
+    }
+    details[open]>summary{background:rgba(96,165,250,.06)}
+    summary::-webkit-details-marker{display:none}
+    ul{margin:8px 0 8px 18px}
+    .note{background:rgba(119,242,161,.08); border:1px solid rgba(119,242,161,.4); color:#dcffe8; padding:10px; border-radius:10px; font-size:14px}
+    .warn{background:rgba(255, 209, 102,.1); border:1px solid rgba(255,209,102,.5); color:#fff3cf}
+    .danger{background:rgba(255,107,107,.1); border:1px solid rgba(255,107,107,.5); color:#ffdada}
+    footer{color:var(--muted); text-align:center; padding:30px 0 80px}
+    .pill{display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); font-size:12px}
+    @media (max-width:700px){.container{padding:0 8px}.grid{gap:14px}}
+    @media (max-width:700px){
+      .container{padding:0 2px}
+      .grid{gap:6px}
+      section{padding:8px 2px 6px 2px;}
+      h1{font-size:1.02rem;}
+      section h2{font-size:0.92rem;}
+    }
+  </style>
+
+
+
+
+</head>
+<body>
+  <header>
+    <div class="wrap title">
+      <h1>Military Benefits</h1>
+      <small>Comprehensive, plain-English guide with step-by-step instructions</small>
+    </div>
+  </header>
+
+  <div class="layout">
+    <!-- Sidebar / TOC -->
+    <nav class="toc">
+      <h3>Sections</h3>
+      <a class="section-link" href="#money">Money & Banking</a>
+      <a class="section-link" href="#education">Education</a>
+      <a class="section-link" href="#health">Health Care</a>
+      <a class="section-link" href="#housing">Housing & Moving</a>
+      <a class="section-link" href="#pay-taxes">Pay & Taxes</a>
+      <a class="section-link" href="#retirement">Retirement & Investing</a>
+      <a class="section-link" href="#legal">Legal & Consumer Protections</a>
+      <a class="section-link" href="#travel">Travel & Leisure</a>
+      <a class="section-link" href="#insurance">Insurance & Survivor</a>
+      <a class="section-link" href="#shopping">Base Access & Shopping</a>
+      <a class="section-link" href="#family">Family Support</a>
+      <a class="section-link" href="#guard">Guard & Reserve</a>
+    </nav>
+
+    <!-- Main -->
+    <main>
+      <!-- Filters -->
+      <section id="filters">
+        <h2>Filter</h2>
+        <p class="section-sub">Toggle eligibility or search by keyword. Results update in real time.</p>
+        <div class="filters" id="eligibility">
+          <label class="chip"><input type="checkbox" data-role value="active"> Active Duty</label>
+          <label class="chip"><input type="checkbox" data-role value="guard"> Guard/Reserve</label>
+          <label class="chip"><input type="checkbox" data-role value="veteran"> Veteran</label>
+          <label class="chip"><input type="checkbox" data-role value="spouse"> Spouse/Dependent</label>
+        </div>
+        <div class="searchbar">
+          <input type="search" id="search" placeholder="Search benefits, e.g., ‘TSA PreCheck’, ‘GI Bill’, ‘Amex’" />
+        </div>
+      </section>
+
+      <!-- Money & Banking -->
+      <section id="money">
+        <h2>Money & Banking</h2>
+        <p class="section-sub">Credit cards under MLA/SCRA, savings programs, and credit protections.</p>
+        <div class="grid">
+          <article class="benefit-item" data-cats="money" data-eligibility="active guard spouse" data-keywords="credit card amex chase citi capital one mla scra annual fee">
+            <div class="benefit-head">
+              <h3>Credit Card Annual Fee Relief (MLA / SCRA)</h3>
+              <span class="badge">High value</span>
+            </div>
+            <div class="meta">Issuers may waive annual fees and cap rates for covered borrowers. Policies vary by bank.</div>
+            <style>
+              :root{
+                --bg:#0a0f1f; --panel:#0f1630; --card:#121a3a; --text:#eef2ff; --muted:#a6b3e0;
+                --accent:#5aa9ff; --accent-2:#a78bfa; --hot:#ff8f70; --emerald:#22d3a3; --gold:#facc15; --danger:#ff6b6b;
+                --chip:#151c3c; --stroke:#1b2550; --grid:#1a2250;
+                --shadow:0 20px 60px rgba(0,0,0,.42); --radius:16px; --glass:blur(12px);
+                --brand-grad:linear-gradient(90deg,#5aa9ff, #8ba3ff 40%, #a78bfa);
+                --glow:0 0 0 1px rgba(90,169,255,.25), 0 10px 25px rgba(167,139,250,.18);
+              }
+              *{box-sizing:border-box}
+              html,body{height:100%}
+              body{
+                margin:0; font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial;
+                color:var(--text);
+                background:
+                  radial-gradient(1200px 600px at 100% -20%, rgba(167,139,250,.15), transparent 55%),
+                  radial-gradient(800px 400px at -10% -10%, rgba(90,169,255,.14), transparent 55%),
+                  var(--bg);
+              }
+              .wrap{max-width:1100px;margin:0 auto;padding:24px}
+              h1{font-size:clamp(22px,2.5vw,32px);margin:0 0 12px;font-weight:800;letter-spacing:.2px}
+              h2{font-size:clamp(18px,2vw,26px);margin:24px 0 10px;font-weight:700}
+              h3{font-size:clamp(15px,1.5vw,20px);margin:18px 0 8px;font-weight:600}
+              .pill{display:inline-block;background:var(--chip);color:var(--accent);padding:4px 12px;border-radius:999px;font-size:13px;margin-right:8px}
+              .note{background:var(--panel);border-radius:12px;padding:14px 18px;margin:18px 0;color:var(--muted)}
+              .card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.015));border:1px solid var(--stroke);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin:18px 0}
+              .muted{color:var(--muted);font-size:13px}
+              .row{display:flex;gap:10px;flex-wrap:wrap}
+              .chip{background:var(--chip);border-radius:999px;padding:6px 10px;font-size:12px;color:var(--accent)}
+              .divider{height:1px;background:linear-gradient(90deg,transparent,#5aa9ff,transparent);margin:18px 0}
+              .btn{padding:10px 14px;border-radius:12px;border:1px solid #27408b;background:var(--panel);color:var(--text);font-weight:600;cursor:pointer}
+              .btn.ghost{background:transparent;border-color:#2b3a7a;color:var(--accent)}
+              .kpi{background:var(--card);border-radius:14px;padding:12px;margin:8px 0}
+              .kpi .label{font-size:12px;color:var(--muted)}
+              .kpi .value{font-size:22px;font-weight:800}
+              .section{margin-top:24px}
+              .inline{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+              .right{margin-left:auto}
+              .savebox{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+              ul{padding-left:18px}
+              li{margin-bottom:8px}
+              @media (max-width:900px){.wrap{padding:12px}}
+              @media (max-width:700px){h1{font-size:22px}.wrap{padding:6px}}
+            </style>
+            <div class="benefit-head">
+              <h3>Savings Deposit Program (SDP)</h3>
+              <span class="badge">10% APY (capped)</span>
+            </div>
+            <div class="meta">Deployed in a combat zone and receiving HFP/IDP? Deposit up to $10,000 at 10% annual interest.</div>
+            <details>
+              <summary>How it works</summary>
+              <ul>
+                <li>Eligible after 30 consecutive days in a qualifying area (or 1 day in each of 3 consecutive months).</li>
+                <li>Interest accrues monthly and is paid quarterly on balances up to $10,000.</li>
+                <li>Withdraw after leaving the combat zone; emergency withdrawals possible with command approval.</li>
+              </ul>
+            </details>
+            <details>
+              <summary>How to use</summary>
+              <ul>
+                <li>Start the deposit via finance or myPay; fund from pay/allotment.</li>
+                <li>Target a full $10,000 balance if cash‑flow permits to maximize guaranteed return.</li>
+                <li>Plan withdrawals and taxes on interest (interest is taxable).</li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="benefit-item" data-cats="money" data-eligibility="active" data-keywords="career starter loan navy federal usaa kickoff rotc academy 0.75% 2.99%">
+            <div class="benefit-head">
+              <h3>Career Starter / Kickoff Loans</h3>
+              <span class="badge">Low APR</span>
+            </div>
+            <div class="meta">Special personal loans for commissioning officers/cadets with deferred payments and low rates.</div>
+            <details>
+              <summary>Typical features</summary>
+              <ul>
+                <li>Navy Federal: up to $36k at low APR for academy cadets; up to $25k at low APR for ROTC/OCS/OTS; deferral options.</li>
+                <li>USAA: career starter loans with low fixed APR and deferred start; amounts and eligibility vary by program.</li>
+              </ul>
+            </details>
+            <details>
+              <summary>How to use responsibly</summary>
+              <ul>
+                <li>Borrow only what you need; avoid investing borrowed funds without understanding risk.</li>
+                <li>Set autopay and keep emergency cash for PCS/initial expenses.</li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="benefit-item" data-cats="money" data-eligibility="active guard spouse" data-keywords="credit monitoring active duty alert fraud freeze equifax experian transunion">
+            <div class="benefit-head">
+              <h3>Free Credit Monitoring & Active Duty Alerts</h3>
+              <span class="badge">Identity protection</span>
+            </div>
+            <div class="meta">Active‑duty and Guard members can enroll in free bureau monitoring and place renewable Active Duty Alerts.</div>
+            <details>
+              <summary>Actions</summary>
+              <ul>
+                <li>Enroll in free electronic credit monitoring with all three bureaus.</li>
+                <li>Place an <b>Active Duty Alert</b> before deployment to add extra verification for new credit.</li>
+                <li>Freeze your credit when not applying for new accounts.</li>
+              </ul>
+            </details>
+          </article>
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section id="education">
+        <h2>Education</h2>
+        <p class="section-sub">GI Bill, Yellow Ribbon, Tuition Assistance, and credentialing.</p>
+        <div class="grid">
+          <article class="benefit-item" data-cats="education" data-eligibility="active veteran spouse guard" data-keywords="post-9/11 gi bill bah books yellow ribbon transfer">
+            <div class="benefit-head"><h3>Post‑9/11 GI Bill</h3><span class="badge">Core benefit</span></div>
+            <details open>
+              <summary>What you get</summary>
+              <ul>
+                <li>Tuition and fees up to the statutory cap (or full in‑state at publics).</li>
+                <li>Monthly Housing Allowance (BAH E‑5 w/ dependents for school ZIP; pro‑rated by enrollment).</li>
+                <li>Books and supplies stipend (annual cap) and one‑time rural relocation payment (if eligible).</li>
+                <li>Yellow Ribbon covers amounts above the cap at participating schools.</li>
+              </ul>
+            </details>
+            <details>
+              <summary>How to use</summary>
+              <ul>
+                <li>Apply for your Certificate of Eligibility (COE) and submit to your school certifying official.</li>
+                <li>Confirm VA certification each term; monitor MHA proration for online vs in‑person credits.</li>
+                <li>Consider <b>transfer</b> to dependents if eligible and service commitment is acceptable.</li>
+              </ul>
+            </details>
+            <div class="note warn">Rules on transferability and caps change. Confirm with VA and your school’s SCO before committing.</div>
+          </article>
+
+          <article class="benefit-item" data-cats="education" data-eligibility="active guard" data-keywords="tuition assistance ta 250 per credit 4500 cap top-up dantes clep dsst">
+            <div class="benefit-head"><h3>Tuition Assistance (TA) + Top‑Up</h3><span class="badge">Pay‑as‑you‑go</span></div>
+            <details>
+              <summary>What you get</summary>
+              <ul>
+                <li>Service TA typically covers up to $250 per semester hour, with annual caps (often $4,500).</li>
+                <li>TA Top‑Up lets you apply GI Bill to remaining tuition not covered by TA.</li>
+                <li>Use CLEP/DSST exams (via DANTES) to test out of classes where allowed.</li>
+              </ul>
+            </details>
+            <details>
+              <summary>How to use</summary>
+              <ul>
+                <li>Request TA through your service portal before course start.</li>
+                <li>Coordinate with education office to avoid double‑paying or jeopardizing GI Bill months.</li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="benefit-item" data-cats="education" data-eligibility="active" data-keywords="credentialing assistance armyignited ca $4000 cool">
+            <div class="benefit-head"><h3>Credentialing Assistance / COOL</h3><span class="badge">Career‑ready</span></div>
+            <details>
+              <summary>Overview</summary>
+              <ul>
+                <li>Army CA provides up to $4,000 per FY for approved licenses/certs; other services have COOL resources.</li>
+                <li>Use for CompTIA, PMP, AWS, Lean Six Sigma, trades, etc., if approved.</li>
+              </ul>
+            </details>
+            <details>
+              <summary>Steps</summary>
+              <ul>
+                <li>Search your service’s COOL catalog; verify alignment to your MOS/AFSC/Rating when required.</li>
+                <li>Apply in advance; upload quotes/invoices; complete within funding windows.</li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="benefit-item" data-cats="education" data-eligibility="spouse" data-keywords="mycaa spouse scholarship associate certificate portable career">
+            <div class="benefit-head"><h3>MyCAA (Spouse Scholarship)</h3><span class="badge">Spouse support</span></div>
+            <details>
+              <summary>What it provides</summary>
+              <ul>
+                <li>Tuition assistance for eligible spouses pursuing licenses, certificates, or associate degrees leading to portable careers.</li>
+              </ul>
+            </details>
+            <details>
+              <summary>How to use</summary>
+              <ul>
+                <li>Create account, verify sponsor rank/status eligibility, select approved program/provider, and submit Education & Training Plan for approval.</li>
+              </ul>
+            </details>
+          </article>
+        </div>
+      </section>
+
+      <!-- Health Care -->
+      <section id="health">
+        <h2>Health Care</h2>
+        <p class="section-sub">TRICARE medical, dental, and vision options by status.</p>
+        <div class="grid">
+          <article class="benefit-item" data-cats="health" data-eligibility="active guard veteran spouse" data-keywords="tricare prime select reserve select retired reserve young adult tricare for life">
+            <div class="benefit-head"><h3>TRICARE Medical Plans</h3><span class="badge">Medical</span></div>
+            <details open>
+              <summary>Plan types</summary>
+              <ul>
+                <li><b>Prime</b>: managed care with PCM; minimal out‑of‑pocket for active duty families.</li>
+                <li><b>Select</b>: PPO‑style flexibility with cost shares.</li>
+                <li><b>Reserve Select / Retired Reserve</b>: premium‑based options for eligible Guard/Reserve.</li>
+                <li><b>Young Adult</b>: for dependents up to age 26.</li>
+                <li><b>TRICARE For Life</b>: wraparound to Medicare for eligible retirees.</li>
+              </ul>
+            </details>
+            <details>
+              <summary>Actions</summary>
+              <ul>
+                <li>Enroll/update in milConnect after life events (PCS, marriage, birth).</li>
+                <li>Know referral rules (Prime) and network cost shares (Select).</li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="benefit-item" data-cats="health" data-eligibility="active guard veteran spouse" data-keywords="dental vision tdp fedvip">
+            <div class="benefit-head"><h3>Dental & Vision</h3><span class="badge">Dental/Vision</span></div>
+            <details>
+              <summary>Coverage</summary>
+              <ul>
+                <li><b>TRICARE Dental Program (TDP)</b> for eligible family members; active duty dental is provided separately.</li>
+                <li><b>FEDVIP</b> dental/vision available to retirees and eligible family members.</li>
+              </ul>
+            </details>
+          </article>
+        </div>
+      </section>
+
+      <!-- Housing & Moving -->
+      <section id="housing">
+        <h2>Housing & Moving</h2>
+        <p class="section-sub">VA home loans and PCS entitlements.</p>
+        <div class="grid">
+          <article class="benefit-item" data-cats="housing" data-eligibility="active veteran guard spouse" data-keywords="va home loan coe funding fee exemption pmi irrrl refinance">
+            <div class="benefit-head"><h3>VA Home Loan</h3><span class="badge">No PMI / $0 down (with entitlement)</span></div>
+            <details open>
+              <summary>Key features</summary>
+              <ul>
+                <li>No down payment with sufficient entitlement; competitive rates; no PMI.</li>
+                <li>Funding fee may be <b>exempt</b> with qualifying service‑connected disability; refunds possible if rating arrives retroactively after closing.</li>
+                <li>IRRRL ("VA streamline") can reduce rate or move ARM to fixed on existing VA loans.</li>
+              </ul>
+            </details>
+            <details>
+              <summary>How to use</summary>
+              <ul>
+                <li>Obtain your <b>COE</b> online or through a VA‑approved lender.</li>
+                <li>Shop lenders; verify funding fee category and any exemption before closing.</li>
+                <li>For refunds (new disability award post‑closing with retroactive effective date), file with your lender/VA.</li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="benefit-item" data-cats="housing" data-eligibility="active guard spouse" data-keywords="pcs dla tle tla hhg ppm dity pov oha bah bas per diem">
+            <div class="benefit-head"><h3>PCS Allowances & Entitlements</h3><span class="badge">Move smart</span></div>
+            <details>
+              <summary>What to claim</summary>
+              <ul>
+                <li><b>DLA</b> (Dislocation Allowance) for setup costs.</li>
+                <li><b>TLE/TLA</b> for temporary lodging (CONUS/OCONUS rules differ).</li>
+                <li><b>HHG</b> shipment with weight limits; <b>PPM/DITY</b> reimbursements if you move yourself.</li>
+                <li><b>BAH/BAS</b> for housing and subsistence; <b>COLA</b> in certain locations.</li>
+              </ul>
+            </details>
+            <details>
+              <summary>Execution</summary>
+              <ul>
+                <li>Enter orders in DPS; book pack/pickup early.</li>
+                <li>Keep receipts for lodging, fuel, and weight tickets (PPM).</li>
+                <li>Check POV shipment/storage rules overseas.</li>
+              </ul>
+            </details>
+          </article>
+        </div>
+      </section>
+
+      <!-- Pay & Taxes -->
+      <section id="pay-taxes">
+        <h2>Pay & Taxes</h2>
+        <p class="section-sub">Allowances and tax exclusions you should not miss.</p>
+        <div class="grid">
+          <article class="benefit-item" data-cats="pay" data-eligibility="active guard" data-keywords="czte combat zone tax exclusion hostile fire imminent danger pay eic extension">
+            <div class="benefit-head"><h3>Combat Zone Tax Exclusion (CZTE)</h3><span class="badge">Powerful</span></div>
+            <details>
+              <summary>What it does</summary>
+              <ul>
+                <li>Excludes pay earned in a designated combat zone from federal income tax (limits apply for officers).</li>
+                <li>Triggers automatic filing/payment extensions and may increase room for Roth/TSP contributions.</li>
+              </ul>
+            </details>
+            <details>
+              <summary>Steps</summary>
+              <ul>
+                <li>Confirm your location is a current IRS‑recognized combat zone.</li>
+                <li>Verify LES coding and keep orders; use Publication 3 for rules and deadlines.</li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="benefit-item" data-cats="pay" data-eligibility="active guard" data-keywords="bah bas fsa cola per diem special pays">
+            <div class="benefit-head"><h3>Allowances & Special Pays</h3><span class="badge">Recurring</span></div>
+            <details>
+              <summary>Common items</summary>
+              <ul>
+                <li><b>BAH</b> (housing), <b>BAS</b> (subsistence), <b>FSA</b> (family separation), <b>COLA</b> (certain locales).</li>
+                <li><b>HFP/IDP</b> for qualifying locations; other incentive/special pays by career field.</li>
+              </ul>
+            </details>
+          </article>
+        </div>
+      </section>
+
+      <!-- Retirement & Investing -->
+      <section id="retirement">
+        <h2>Retirement & Investing</h2>
+        <p class="section-sub">BRS pension, TSP matching, and vesting rules.</p>
+        <div class="grid">
+          <article class="benefit-item" data-cats="retirement" data-eligibility="active guard" data-keywords="blended retirement system brs 2% multiplier high-36 continuation pay">
+            <div class="benefit-head"><h3>Blended Retirement System (BRS)</h3><span class="badge">Foundation</span></div>
+            <details>
+              <summary>Snapshot</summary>
+              <ul>
+                <li>Pension = <b>2.0% × years served × high‑36</b> basic pay (after 20 YOS for active components; reserves adjusted by points).</li>
+                <li><b>Continuation Pay</b> bonus typically at 8–12 YOS in exchange for service commitment.</li>
+              </ul>
+            </details>
+            <details>
+              <summary>TSP interaction</summary>
+              <ul>
+                <li>Automatic 1% contribution (vests after 2 years) + up to 4% matching on your 5% contributions.</li>
+                <li>Choose Traditional vs Roth based on tax situation; Lifecycle (L) funds for target‑date diversification.</li>
+              </ul>
+            </details>
+          </article>
+
+<article class="benefit-item" data-cats="retirement" data-eligibility="active guard reserve" data-keywords="tsp funds g f c s i lifecycle l funds roth traditional vesting matching brs czte loans withdrawals ift contribution allocation limits continuation pay catch-up rmd rollover">
+  <div class="benefit-head">
+    <h3>Thrift Savings Plan (TSP)</h3>
+    <span class="badge">Low cost</span>
+  </div>
+
+  <!-- Quick Keys -->
+  <details open>
+    <summary>Keys</summary>
+    <ul>
+      <li>Ultra-low expense index funds (<strong>G, F, C, S, I</strong>) + target-date <strong>L Funds</strong>.</li>
+      <li><strong>BRS match:</strong> 1% automatic + up to 4% match when you contribute <strong>5%</strong> each pay period.</li>
+      <li><strong>Roth</strong> can be powerful in <em>CZTE</em> months (tax-free in &amp; out if qualified); <strong>Traditional</strong> defers tax otherwise.</li>
+      <li>Two unrestricted <strong>Interfund Transfers (IFTs)</strong> per month; additional IFTs to <em>G Fund only</em>.</li>
+      <li>Reconfirm deductions after PCS/promotion—some payroll systems don’t auto-carry settings.</li>
+    </ul>
+  </details>
+
+  <!-- Matching & Vesting -->
+  <details>
+    <summary>Matching &amp; Vesting (BRS)</summary>
+    <ul>
+      <li><strong>Automatic 1%</strong> of basic pay goes to TSP even if you contribute 0% (starts after 60 days of service).</li>
+      <li><strong>Matching:</strong> dollar-for-dollar on the first 3% you contribute, plus 50¢ per dollar on the next 2% ⇒ contribute <strong>5%</strong> to get the full <strong>4% match</strong> (total govt 5% with the 1% automatic).</li>
+      <li><strong>Vesting:</strong> Your contributions and the match vest immediately; the <em>1% automatic</em> typically vests after <strong>2 years</strong> of service (service-specific rules).</li>
+      <li><strong>Per-pay-period rule:</strong> Matching is calculated each paycheck. If you hit the yearly limit early, you can miss matching on later pay periods.</li>
+    </ul>
+  </details>
+
+  <!-- Funds -->
+  <details>
+    <summary>Investment Funds (G / F / C / S / I + Lifecycle)</summary>
+    <div class="grid grid--two">
+      <div>
+        <p><strong>G Fund – Government Securities:</strong> Special-issue Treasuries, principal guaranteed by U.S. government, no market price volatility; yield tracks short-to-intermediate Treasuries.</p>
+        <p><strong>F Fund – U.S. Bond Index:</strong> Broad, investment-grade U.S. bonds; adds income/diversification; price sensitive to interest-rate moves.</p>
+        <p><strong>C Fund – U.S. Large Cap:</strong> S&amp;P 500-like index; core growth of large U.S. companies.</p>
+      </div>
+      <div>
+        <p><strong>S Fund – U.S. Extended Market:</strong> Mid/small-cap completion of the U.S. market (everything not in C). Higher volatility, higher expected return.</p>
+        <p><strong>I Fund – International Developed:</strong> Large/mid-cap developed markets (generally excludes emerging/small caps); non-U.S. diversification.</p>
+        <p><strong>L (Lifecycle) Funds:</strong> Target-date mixes of G/F/C/S/I that auto-rebalance and glide more conservative as the target date approaches.</p>
+      </div>
+    </div>
+  </details>
+
+  <!-- Traditional vs Roth -->
+  <details>
+    <summary>Traditional vs. Roth (and Combat Zone)</summary>
+    <ul>
+      <li><strong>Traditional TSP:</strong> Pre-tax now, taxed later; can reduce current taxable income.</li>
+      <li><strong>Roth TSP:</strong> After-tax now, <em>qualified withdrawals tax-free</em> later (subject to 5-year rule and age/qualifications).</li>
+      <li><strong>CZTE tip:</strong> In combat zone months, consider prioritizing <strong>Roth</strong> contributions (tax-free in + tax-free growth + tax-free out if qualified).</li>
+      <li>You can split contributions between Traditional and Roth to fit your tax plan.</li>
+    </ul>
+  </details>
+
+  <!-- Setup Steps -->
+  <details>
+    <summary>Step-by-Step Setup</summary>
+    <ol>
+      <li><strong>Open/verify TSP.gov account</strong> and enable MFA; add/update beneficiaries.</li>
+      <li><strong>Set contribution rate in your payroll system</strong> (myPay / Marine Online / etc.). Choose at least <strong>5%</strong> of <em>basic pay</em> per pay period to capture full match; optionally add bonuses/special/incentive pay.</li>
+      <li><strong>Choose Traditional vs. Roth</strong> (or both) for your contributions, especially mindful of CZTE months.</li>
+      <li>On <strong>TSP.gov → Contribution Allocation</strong>, set how <em>new money</em> invests (e.g., L 2055 or a custom mix of G/F/C/S/I).</li>
+      <li>Use <strong>Interfund Transfer (IFT)</strong> to move your <em>existing balance</em> if you want it to match your new strategy (2 unrestricted IFTs per month; additional IFTs to G only).</li>
+      <li><strong>Check your LES</strong> after the first paycheck to confirm % and Roth/Traditional types processed and matching posted.</li>
+      <li><strong>Revisit annually</strong> and after PCS/promotion. Some systems don’t carry contribution % to new units automatically.</li>
+    </ol>
+  </details>
+
+  <!-- Smart Practices -->
+  <details>
+    <summary>Smart Practices</summary>
+    <ul>
+      <li><strong>Always 5%+:</strong> Lock in the full match first; increase later toward the annual limit.</li>
+      <li><strong>Use L Funds</strong> for set-and-forget diversification, or DIY with a written target mix and periodic rebalance.</li>
+      <li><strong>Know the mechanics:</strong> Contribution Allocation = new deposits; IFT = existing balance.</li>
+      <li><strong>Low costs compound:</strong> TSP’s ultra-low expense ratios boost long-term outcomes vs. higher-fee plans.</li>
+    </ul>
+  </details>
+
+  <!-- Loans & Withdrawals -->
+  <details>
+    <summary>Loans &amp; Withdrawals</summary>
+    <ul>
+      <li><strong>Loans:</strong> General-purpose or Residential; interest rate equals the G Fund rate at origination; repaid via payroll. Missed payments (PCS/separation) can trigger a taxable distribution—coordinate early.</li>
+      <li><strong>Hardship withdrawals:</strong> For specific needs; may incur taxes/penalties and permanently remove funds from compounding.</li>
+      <li><strong>After separation:</strong> Leave in TSP, roll to IRA/401(k), or take periodic/single withdrawals. Mind Roth 5-year clock, age-based rules, and future RMDs.</li>
+    </ul>
+  </details>
+
+  <!-- Common Pitfalls -->
+  <details>
+    <summary>Common Pitfalls</summary>
+    <ul>
+      <li>Hitting the annual limit too early (front-loading) and <em>missing match</em> on later pay periods.</li>
+      <li>Updating <em>only</em> Contribution Allocation and expecting your current balance to change (you also need an IFT).</li>
+      <li>Forgetting to re-set your payroll deduction after PCS or system changes.</li>
+    </ul>
+  </details>
+
+  <!-- Helpful Links -->
+  <details>
+    <summary>Helpful Links</summary>
+    <ul>
+      <li><a href="https://www.tsp.gov/investment-funds/" target="_blank" rel="noopener">TSP Investment Funds (G/F/C/S/I &amp; L)</a></li>
+      <li><a href="https://www.tsp.gov/making-contributions/contribution-types/" target="_blank" rel="noopener">TSP Matching &amp; Contribution Types</a></li>
+      <li><a href="https://www.tsp.gov/making-contributions/contribution-limits/" target="_blank" rel="noopener">TSP Annual Contribution Limits</a></li>
+      <li><a href="https://www.tsp.gov/plan-for-life/events/entering-a-combat-zone/" target="_blank" rel="noopener">TSP &amp; Combat Zone Contributions</a></li>
+      <li><a href="https://www.tsp.gov/withdrawals/" target="_blank" rel="noopener">TSP Loans &amp; Withdrawals</a></li>
+    </ul>
+  </details>
+</article>
+
+      </section>
+
+      <!-- Legal & Consumer Protections -->
+      <section id="legal">
+        <h2>Legal & Consumer Protections</h2>
+        <p class="section-sub">Know these rights before you sign anything.</p>
+        <div class="grid">
+          <article class="benefit-item" data-cats="legal" data-eligibility="active guard spouse veteran" data-keywords="scra lease termination 6% interest default judgment eviction foreclosure vehicle lease">
+            <div class="benefit-head"><h3>Servicemembers Civil Relief Act (SCRA)</h3><span class="badge">Federal law</span></div>
+            <details>
+              <summary>Highlights</summary>
+              <ul>
+                <li>6% cap on pre‑service debts during active duty (request required; provide orders).</li>
+                <li>Early termination rights for housing and certain vehicle leases; protections against default judgments and some foreclosures/evictions.</li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="benefit-item" data-cats="legal" data-eligibility="active guard spouse" data-keywords="mla 36% mapr covered borrower arbitration fees">
+            <div class="benefit-head"><h3>Military Lending Act (MLA)</h3><span class="badge">Federal law</span></div>
+            <details>
+              <summary>Highlights</summary>
+              <ul>
+                <li>Caps Military APR at 36% and includes many fees in the cap.</li>
+                <li>Applies to many consumer credit products opened while on active duty for <b>covered borrowers</b> (includes many spouses/dependents).</li>
+                <li>Creditors must check covered‑borrower status (DMDC) at or near account opening.</li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="benefit-item" data-cats="legal" data-eligibility="active guard veteran spouse" data-keywords="userra employment reemployment rights civilian job">
+            <div class="benefit-head"><h3>USERRA</h3><span class="badge">Employment</span></div>
+            <details>
+              <summary>What it protects</summary>
+              <ul>
+                <li>Reemployment and benefits protections after military service in most civilian jobs.</li>
+              </ul>
+            </details>
+          </article>
+        </div>
+      </section>
+
+      <!-- Travel & Leisure -->
+      <section id="travel">
+        <h2>Travel & Leisure</h2>
+        <p class="section-sub">Free or discounted access to travel and recreation.</p>
+        <div class="grid">
+          <article class="benefit-item" data-cats="travel" data-eligibility="active guard" data-keywords="tsa precheck dod id known traveler number ktn">
+            <div class="benefit-head"><h3>TSA PreCheck for Military</h3><span class="badge">Free</span></div>
+            <details>
+              <summary>How it works</summary>
+              <ul>
+                <li>Use your <b>DoD ID</b> as your Known Traveler Number to access TSA PreCheck for official and personal travel when eligible.</li>
+                <li>DOD civilians may opt‑in via milConnect; spouses/dependents generally must enroll separately (some discounts may apply).</li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="benefit-item" data-cats="travel" data-eligibility="active guard veteran spouse" data-keywords="national parks military pass veterans lifetime gold star usgs nps">
+            <div class="benefit-head"><h3>National Park Military/Veteran Pass</h3><span class="badge">No entrance fee</span></div>
+            <details>
+              <summary>Access</summary>
+              <ul>
+                <li>Free annual or lifetime passes for current service members, veterans, and Gold Star Families to 2,000+ federal recreation sites.</li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="benefit-item" data-cats="travel" data-eligibility="active guard veteran spouse" data-keywords="american forces travel discounts cruises hotels flights itt mwr">
+            <div class="benefit-head"><h3>American Forces Travel (AFT)</h3><span class="badge">Discount portal</span></div>
+            <details>
+              <summary>What you get</summary>
+              <ul>
+                <li>Exclusive pricing on hotels, flights, rental cars, cruises, events for eligible users.</li>
+                <li>Book online; verify eligibility when prompted.</li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="benefit-item" data-cats="travel" data-eligibility="active guard spouse veteran" data-keywords="space-a amc travel categories cat 1 6 passenger terminal">
+            <div class="benefit-head"><h3>Space‑A Travel (AMC)</h3><span class="badge">Standby</span></div>
+            <details>
+              <summary>Basics</summary>
+              <ul>
+                <li>Standby travel on military aircraft by <b>category</b> priority (Cat I–VI); no reservations.</li>
+                <li>Follow your local AMC Passenger Terminal for schedules, sign‑ups, and roll calls.</li>
+              </ul>
+            </details>
+          </article>
+        </div>
+      </section>
+
+      <!-- Insurance & Survivor -->
+      <section id="insurance">
+        <h2>Insurance & Survivor Benefits</h2>
+        <p class="section-sub">Life insurance during service and after, plus survivor annuities.</p>
+        <div class="grid">
+          <article class="benefit-item" data-cats="insurance" data-eligibility="active spouse" data-keywords="sgli fsgli tsgli premiums coverage $500,000">
+            <div class="benefit-head"><h3>SGLI / FSGLI / TSGLI</h3><span class="badge">During service</span></div>
+            <details>
+              <summary>Coverage</summary>
+              <ul>
+                <li><b>SGLI</b> up to $500,000 with low premiums; TSGLI rider included.</li>
+                <li><b>FSGLI</b> covers spouses (premium paid by member) and dependent children at no cost.</li>
+                <li><b>TSGLI</b> provides one‑time payments for qualifying traumatic injuries.</li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="benefit-item" data-cats="insurance" data-eligibility="veteran" data-keywords="vgli convert coverage post-separation">
+            <div class="benefit-head"><h3>VGLI</h3><span class="badge">After separation</span></div>
+            <details>
+              <summary>Overview</summary>
+              <ul>
+                <li>Convert SGLI to renewable term coverage after leaving service; time limits apply for guaranteed acceptance.</li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="benefit-item" data-cats="insurance" data-eligibility="retiree spouse" data-keywords="sbp survivor benefit plan annuity dfas">
+            <div class="benefit-head"><h3>Survivor Benefit Plan (SBP)</h3><span class="badge">Retirement election</span></div>
+            <details>
+              <summary>What it provides</summary>
+              <ul>
+                <li>Lifetime monthly annuity to designated beneficiaries based on a percent of retired pay; premiums deducted from retired pay.</li>
+              </ul>
+            </details>
+          </article>
+        </div>
+      </section>
+
+      <!-- Base Access & Shopping -->
+      <section id="shopping">
+        <h2>Base Access & Shopping</h2>
+        <p class="section-sub">Commissary, Exchanges, and online privileges.</p>
+        <div class="grid">
+          <article class="benefit-item" data-cats="shopping" data-eligibility="active guard veteran spouse" data-keywords="commissary deca eligibility vhic service-connected">
+            <div class="benefit-head"><h3>Commissary (DeCA)</h3><span class="badge">Grocery savings</span></div>
+            <details>
+              <summary>Eligibility</summary>
+              <ul>
+                <li>Active duty, Guard/Reserve, retirees, and many veterans with qualifying <b>VHIC</b> indicators; eligible family members with proper IDs.</li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="benefit-item" data-cats="shopping" data-eligibility="active guard veteran spouse" data-keywords="exchange aafes nex mcx cgx shopmyexchange online vetverify">
+            <div class="benefit-head"><h3>Exchanges</h3><span class="badge">Tax‑free retail</span></div>
+            <details>
+              <summary>Access</summary>
+              <ul>
+                <li>On‑base shopping for eligible patrons; <b>Veterans online shopping benefit</b> via VetVerify across AAFES/NEX/MCX/CGX.</li>
+              </ul>
+            </details>
+          </article>
+        </div>
+      </section>
+
+      <!-- Family Support -->
+      <section id="family">
+        <h2>Family Support</h2>
+        <p class="section-sub">Child care assistance, special‑needs support, and transition.</p>
+        <div class="grid">
+          <article class="benefit-item" data-cats="family" data-eligibility="active guard spouse" data-keywords="mccyn fee assistance childcare off base waitlist plus">
+            <div class="benefit-head"><h3>MCCYN Child Care Fee Assistance</h3><span class="badge">Reduce costs</span></div>
+            <details>
+              <summary>Overview</summary>
+              <ul>
+                <li>DoD pays a portion of community child care costs when on‑base care is unavailable; programs like MCCYN‑PLUS expand providers.</li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="benefit-item" data-cats="family" data-eligibility="active guard spouse" data-keywords="efmp exceptional family member program support relocation iep">
+            <div class="benefit-head"><h3>EFMP</h3><span class="badge">Special needs</span></div>
+            <details>
+              <summary>What it offers</summary>
+              <ul>
+                <li>Enrollment and family support services for dependents with special medical/educational needs; help with assignments and resources.</li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="benefit-item" data-cats="family" data-eligibility="active guard veteran spouse" data-keywords="tap transition assistance resume va benefits dolf vets">
+            <div class="benefit-head"><h3>Transition Assistance (TAP) & SkillBridge</h3><span class="badge">Next step</span></div>
+            <details>
+              <summary>Use these</summary>
+              <ul>
+                <li><b>TAP</b>: required courses, resume help, VA benefits briefings; start 12 months before separation (24 for retirement).</li>
+                <li><b>SkillBridge</b>: up to ~180 days for approved internships/apprenticeships with command approval.</li>
+              </ul>
+            </details>
+          </article>
+        </div>
+      </section>
+
+      <!-- Guard & Reserve -->
+      <section id="guard">
+        <h2>Guard & Reserve</h2>
+        <p class="section-sub">What differs when you’re not full‑time.</p>
+        <div class="grid">
+          <article class="benefit-item" data-cats="guard" data-eligibility="guard" data-keywords="tricare reserve select retired reserve gi bill selected reserve va loan entitlement points early retirement">
+            <div class="benefit-head"><h3>Key Differences</h3><span class="badge">Part‑time force</span></div>
+            <details>
+              <summary>Highlights</summary>
+              <ul>
+                <li>Medical via <b>TRS/TRR</b> premiums when eligible; dental via TDP.</li>
+                <li>Education via GI Bill Selected Reserve (separate from Post‑9/11 GI Bill).</li>
+                <li>VA home loan eligibility after qualifying service; ensure points and activations are documented.</li>
+                <li>Retirement based on points with age reductions for qualifying active service.</li>
+              </ul>
+            </details>
+          </article>
+        </div>
+      </section>
+
+      <section class="note" style="margin-top:18px">
+        <b>Disclaimer:</b> Policies and amounts change. Confirm details with official sources (VA, DoD, DFAS, TRICARE, DTMO, IRS) and your local offices before acting.
+        <div style="margin-top:8px" class="pill">Last updated: Aug 25, 2025</div>
+      </section>
+
+      <footer>
+        Built for clarity and speed. Use the filter or your browser search to jump to specifics.
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // Simple filtering by eligibility chips and keyword search
+    (function(){
+      const items = Array.from(document.querySelectorAll('.benefit-item'));
+      const roleChips = Array.from(document.querySelectorAll('[data-role]'));
+      const search = document.getElementById('search');
+
+      function applyFilter(){
+        const activeRoles = roleChips.filter(c=>c.checked).map(c=>c.value);
+        const q = (search.value||'').trim().toLowerCase();
+        items.forEach(el=>{
+          const roles = (el.getAttribute('data-eligibility')||'').split(/\s+/);
+          const text = (el.innerText + ' ' + (el.getAttribute('data-keywords')||'')).toLowerCase();
+          const roleMatch = activeRoles.length===0 || activeRoles.some(r=>roles.includes(r));
+          const textMatch = q==='' || text.includes(q);
+          el.style.display = (roleMatch && textMatch) ? '' : 'none';
+        });
+      }
+
+      roleChips.forEach(c=> c.addEventListener('change', applyFilter));
+      search.addEventListener('input', applyFilter);
+    })();
+  </script>
+</body>
+</html>
